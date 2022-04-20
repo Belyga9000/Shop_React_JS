@@ -1,0 +1,18 @@
+@import "../../scss/variables";
+
+.header-navlist {
+  display: flex;
+  width: 300px;
+  .header-navlist_item {
+    list-style: none;
+    text-transform: uppercase;
+    color: $black;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0px;
+  }
+  .active {
+    color: red;
+  }
+}
