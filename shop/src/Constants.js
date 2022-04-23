@@ -1,4 +1,6 @@
-import { gql } from "@apollo/client";
+import { gql } from "graphql-request";
+
+export const url = "http://localhost:4000/graphQl";
 
 export const GET_CATEGORIES = gql`
   {
@@ -13,7 +15,6 @@ export const GET_CURRENCIES = gql`
     currencies {
       label
       symbol
-      isSelected @client
     }
   }
 `;

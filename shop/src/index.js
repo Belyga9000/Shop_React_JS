@@ -3,33 +3,18 @@ import ReactDOM from "react-dom";
 import "./scss/App.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import {
-  ApolloProvider,
-  ApolloClient,
-  createHttpLink,
-  InMemoryCache,
-} from "@apollo/client";
+import { Provider } from "react-redux";
+
+import { store } from "./store";
+
 import { BrowserRouter } from "react-router-dom";
 
-const httpLink = createHttpLink({
-  uri: "http://localhost:4000/graphQl",
-});
-
-export const client = new ApolloClient({
-  link: httpLink,
-  cache: new InMemoryCache(),
-  headers: {
-    authorization: localStorage.getItem("token") || "",
-  },
-});
-
 ReactDOM.render(
-  <ApolloProvider client={client}>
+  <Provider store={store}>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </ApolloProvider>,
-
+  </Provider>,
   document.getElementById("root")
 );
 
