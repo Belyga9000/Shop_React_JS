@@ -1,33 +1,32 @@
-import React from "react";
-import { GET_CATEGORIES, GET_CURRENCIES, GET_PRODUCTS } from "../../Constants";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
+import {
+  fetchCategories,
+  fetchCurrencies,
+  fetchProducts,
+  selectAllCategories,
+  selectAllCurrencies,
+} from "../../store/header/headerSlice";
 import Header from "./Header";
-import { useGraphQl } from "../../customHook";
-import { useParams } from "react-router-dom";
-// import { useQuery } from "@apollo/client";
-// import { client } from "../../index";
 
 export const HeaderContainer = () => {
-  // const { data: currencyData, error: currencyError } = useQuery(GET_CURRENCIES);
-  // const currencies = client.readQuery({
-  //   query: GET_CURRENCIES,
-  // });
-  // const { data: categoriesData, error: categoriesError } =
-  //   useQuery(GET_CATEGORIES);
-  // const categories = client.readQuery({
-  //   query: GET_CATEGORIES,
-  // });
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCurrencies());
+    dispatch(fetchCategories());
+    dispatch(fetchProducts());
+  }, []);
+  const currencies = useSelector(selectAllCurrencies);
+  const categories = useSelector(selectAllCategories);
 
-  const categories = useGraphQl(GET_CATEGORIES);
-  const currencies = useGraphQl(GET_CURRENCIES);
-  useGraphQl(GET_PRODUCTS);
+  // useGraphQl(GET_PRODUCTS);
   const { productType } = useParams();
-  if (currencies.currencies && categories.categories) {
-    return (
-      <Header
-        productType={productType}
-        currencies={currencies.currencies}
-        categories={categories.categories}
-      />
-    );
-  }
+  return (
+    <Header
+      productType={productType}
+      currencies={currencies}
+      categories={categories}
+    />
+  );
 };

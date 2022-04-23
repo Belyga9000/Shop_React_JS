@@ -34,11 +34,7 @@ export default class Header extends Component {
               </li>
             ))}
           </ul>
-          <img
-            src={logo}
-            className={this.isActive ? "asdas" : null}
-            alt=""
-          ></img>
+          <img src={logo} alt="logo icon"></img>
           <div>
             <select name="currencies">
               {this.props.currencies?.map((currency) => (
