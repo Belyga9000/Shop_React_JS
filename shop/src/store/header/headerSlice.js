@@ -43,9 +43,9 @@ const headerSlice = createSlice({
       // );
       // const newArray = currentProducts.categories.filter((el) => {
       //   return el;
-        // return el.Age >= 15 && el.RollNumber <= 200 && el.Marks >= 80;
-      });
-      console.log(newArray);
+      // return el.Age >= 15 && el.RollNumber <= 200 && el.Marks >= 80;
+      // });
+      // console.log(newArray);
     },
   },
   extraReducers: (builder) => {
