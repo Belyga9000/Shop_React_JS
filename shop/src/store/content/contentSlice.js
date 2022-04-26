@@ -1,21 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { data: [] };
+const initialState = {};
 
 const contentSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {
-    increment(state) {
-      state.value++;
-    },
-    decrement(state) {
-      state.value--;
-    },
-    incrementByAmount(state, action) {
-      state.value += action.payload;
-    },
-  },
+  reducers: {},
 });
 
 export const { increment, decrement, incrementByAmount } = contentSlice.actions;

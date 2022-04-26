@@ -2,28 +2,42 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import {
-  fetchCategories,
   fetchCurrencies,
   fetchProducts,
+  filterProducts,
+  productsAreFetched,
   selectAllCategories,
   selectAllCurrencies,
+  selectCategory,
 } from "../../store/header/headerSlice";
 import Header from "./Header";
 
 export const HeaderContainer = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchCurrencies());
-    dispatch(fetchCategories());
-    dispatch(fetchProducts());
-  }, []);
+  const { productType } = useParams();
   const currencies = useSelector(selectAllCurrencies);
   const categories = useSelector(selectAllCategories);
+  const currentCategory = useSelector(selectCategory);
+  const productsIsFetched = useSelector(productsAreFetched);
 
-  // useGraphQl(GET_PRODUCTS);
-  const { productType } = useParams();
+  useEffect(() => {
+    dispatch(fetchCurrencies());
+    dispatch(fetchProducts());
+    dispatch(selectCategory(productType));
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(filterProducts());
+  }, [productsIsFetched]);
+
+  const handleCategoryChange = (e) => {
+    dispatch(selectCategory(e.target.text));
+    dispatch(filterProducts());
+  };
+
   return (
     <Header
+      handleCategoryChange={handleCategoryChange}
       productType={productType}
       currencies={currencies}
       categories={categories}

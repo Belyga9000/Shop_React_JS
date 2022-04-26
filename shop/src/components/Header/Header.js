@@ -7,16 +7,6 @@ import logo from "../../img/Logo.svg";
 import cart from "../../img/Cart.svg";
 
 export default class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      category_name: this.props.productType,
-    };
-  }
-  handleCategoryChange = (e) => {
-    this.setState({ category_name: e.target.text });
-  };
-
   render() {
     return (
       <>
@@ -27,7 +17,7 @@ export default class Header extends Component {
                 <NavLink
                   className={({ isActive }) => (isActive ? "active" : "")}
                   to={`products/${category.name}`}
-                  onClick={this.handleCategoryChange}
+                  onClick={this.props.handleCategoryChange}
                 >
                   {category.name}
                 </NavLink>
@@ -55,7 +45,7 @@ export default class Header extends Component {
             </div>
           </div>
         </header>
-        <Outlet context={this.state?.category_name} />
+        <Outlet />
       </>
     );
   }
