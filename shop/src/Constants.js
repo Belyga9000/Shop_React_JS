@@ -2,29 +2,11 @@ import { gql } from "graphql-request";
 
 export const url = "http://localhost:4000/graphQl";
 
-export const GET_CATEGORIES = gql`
+export const GET_PRODUCTS = gql`
   {
     categories {
       name
-    }
-  }
-`;
-
-export const GET_CURRENCIES = gql`
-  {
-    currencies {
-      label
-      symbol
-    }
-  }
-`;
-
-export const GET_PRODUCTS = gql`
-  query products($categoryName: CategoryInput) {
-    category(input: $categoryName) {
-      name
       products {
-        id
         name
         inStock
         gallery
@@ -44,6 +26,15 @@ export const GET_PRODUCTS = gql`
         }
         brand
       }
+    }
+  }
+`;
+
+export const GET_CURRENCIES = gql`
+  {
+    currencies {
+      label
+      symbol
     }
   }
 `;
