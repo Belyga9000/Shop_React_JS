@@ -6,6 +6,7 @@ const initialState = {
   currencies: {},
   products: {},
   selectedCategory: "",
+  filteredCategory: {},
   productsForCurrentCategory: {},
   productsAreFetched: false,
 };
@@ -35,17 +36,18 @@ const headerSlice = createSlice({
     filterProducts: (state) => {
       const category = state.selectedCategory;
       const currentProducts = current(state.products);
-      // const filtered = currentProducts.categories.filter(
-      //   (product) => product.category !== "all"
-      // );
-      // const filtered = Object.entries(currentProducts).filter(
-      //   ([key, value]) => value.name === "all"
-      // );
-      // const newArray = currentProducts.categories.filter((el) => {
-      //   return el;
-      // return el.Age >= 15 && el.RollNumber <= 200 && el.Marks >= 80;
-      // });
-      // console.log(newArray);
+      const data = currentProducts.categories;
+
+      if (data) {
+        const filteredCategory = Object.values(data).filter(
+          (a) => a.name === category
+        );
+
+        const filteredProducts = (([{ products }]) => ({ products }))(
+          filteredCategory
+        );
+        state.filteredCategory = filteredProducts.products;
+      }
     },
   },
   extraReducers: (builder) => {
@@ -64,12 +66,12 @@ const headerSlice = createSlice({
   },
 });
 
-// Rename the exports for readability in component usage
 export const selectAllCurrencies = (state) =>
   state.header.currencies.currencies;
 export const selectAllCategories = (state) => state.header.products.categories;
 export const selectedCategory = (state) => state.header.selectedCategory;
 export const productsAreFetched = (state) => state.header.productsAreFetched;
+export const filteredProducts = (state) => state.header.filteredCategory;
 
 export const { selectCategory, filterProducts } = headerSlice.actions;
 export default headerSlice.reducer;
