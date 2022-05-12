@@ -7,7 +7,7 @@ const initialState = {
   products: {},
   selectedCategory: "",
   filteredCategory: {},
-  productsForCurrentCategory: {},
+  productsForCurrentCategory: [],
   productsAreFetched: false,
 };
 
@@ -32,17 +32,14 @@ const headerSlice = createSlice({
       state.selectedCategory = categoryName;
       return state;
     },
-    productsDidUpdate: (state) => {},
     filterProducts: (state) => {
       const category = state.selectedCategory;
       const currentProducts = current(state.products);
       const data = currentProducts.categories;
-
       if (data) {
         const filteredCategory = Object.values(data).filter(
           (a) => a.name === category
         );
-
         const filteredProducts = (([{ products }]) => ({ products }))(
           filteredCategory
         );

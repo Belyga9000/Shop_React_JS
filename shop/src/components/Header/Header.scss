@@ -1,9 +1,12 @@
 @import "../../scss/variables";
+@import "../../scss/general";
 
 .header-navlist {
   display: flex;
   width: 300px;
+  margin: 0;
   .header-navlist_item {
+    padding: 28px 16px 32px;
     list-style: none;
     text-transform: uppercase;
     color: $black;
@@ -11,8 +14,20 @@
     font-weight: 400;
     line-height: 19px;
     letter-spacing: 0px;
+    text-decoration: none;
   }
   .active {
-    color: red;
+    font-weight: 600;
+    color: $green;
+    text-decoration: none;
+    border-bottom: 1px solid $green;
   }
+}
+.header-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sideMenu {
+  display: flex;
 }
