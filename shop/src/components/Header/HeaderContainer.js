@@ -17,14 +17,13 @@ export const HeaderContainer = () => {
   const { productType } = useParams();
   const currencies = useSelector(selectAllCurrencies);
   const categories = useSelector(selectAllCategories);
-  const currentCategory = useSelector(selectCategory);
   const productsIsFetched = useSelector(productsAreFetched);
 
   useEffect(() => {
     dispatch(fetchCurrencies());
     dispatch(fetchProducts());
     dispatch(selectCategory(productType));
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     dispatch(filterProducts());
