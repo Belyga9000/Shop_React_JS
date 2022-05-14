@@ -6,6 +6,7 @@ const initialState = {
   currencies: {},
   products: {},
   selectedCategory: "",
+  selectedCurrency: {},
   filteredCategory: {},
   productsForCurrentCategory: [],
   productsAreFetched: false,
@@ -52,6 +53,7 @@ const headerSlice = createSlice({
       .addCase(fetchCurrencies.fulfilled, (state, action) => {
         const currencies = action.payload;
         state.currencies = currencies;
+        state.selectedCurrency = currencies.currencies[0];
         return state;
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
@@ -67,6 +69,7 @@ export const selectAllCurrencies = (state) =>
   state.header.currencies.currencies;
 export const selectAllCategories = (state) => state.header.products.categories;
 export const selectedCategory = (state) => state.header.selectedCategory;
+export const selectedCurrency = (state) => state.header.selectedCurrency;
 export const productsAreFetched = (state) => state.header.productsAreFetched;
 export const filteredProducts = (state) => state.header.filteredCategory;
 

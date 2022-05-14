@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-import "../../scss/_variables.scss";
-import "../../scss/_general.scss";
 import "./Header.scss";
 import { NavLink, Outlet } from "react-router-dom";
 import logo from "../../img/Logo.svg";
@@ -17,8 +15,8 @@ export default class Header extends Component {
                 <NavLink
                   className={({ isActive }) =>
                     isActive
-                      ? "header-navlist_item active"
-                      : "header-navlist_item"
+                      ? "header-navlist_item_text active"
+                      : "header-navlist_item_text"
                   }
                   to={`products/${category.name}`}
                   onClick={this.props.handleCategoryChange}
@@ -30,12 +28,16 @@ export default class Header extends Component {
           </ul>
           <img src={logo} alt="logo icon"></img>
           <div className="sideMenu">
-            <select className="sideMenu-currencies" name="currencies">
-              <option defaultValue="" hidden>
-                kek
+            <select className="sideMenu-currencies_dropdown" name="currencies">
+              <option className="sideMenu-currencies_dropdown_option" hidden>
+                {this.props.currentCurrency.symbol}
               </option>
               {this.props.currencies?.map((currency) => (
-                <option key={currency.label} name={currency.label}>
+                <option
+                  className="sideMenu-currencies_dropdown_option"
+                  key={currency.label}
+                  name={currency.label}
+                >
                   {currency.symbol} {currency.label}
                 </option>
               ))}

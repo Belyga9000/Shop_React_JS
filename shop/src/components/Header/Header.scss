@@ -3,10 +3,8 @@
 
 .header-navlist {
   display: flex;
-  width: 300px;
-  margin: 0;
+  height: 78px;
   .header-navlist_item {
-    padding: 28px 16px 32px;
     list-style: none;
     text-transform: uppercase;
     color: $black;
@@ -14,8 +12,14 @@
     font-weight: 400;
     line-height: 19px;
     letter-spacing: 0px;
-    text-decoration: none;
+    padding-top: 28px;
+
+    .header-navlist_item_text {
+      padding: 28px 16px 32px;
+      text-decoration: none;
+    }
   }
+
   .active {
     font-weight: 600;
     color: $green;
@@ -30,4 +34,17 @@
 }
 .sideMenu {
   display: flex;
+
+  .sideMenu-currencies_dropdown {
+    text-align: center;
+
+    .sideMenu-currencies_dropdown_option {
+      font-family: Raleway;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 29px;
+      letter-spacing: 0em;
+      text-align: center;
+    }
+  }
 }
