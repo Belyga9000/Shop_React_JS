@@ -1,3 +1,5 @@
+@import "../../scss/variables";
+
 .outOfStock {
   opacity: 50%;
 }
@@ -14,19 +16,33 @@
 .content-wrap {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 .content-card {
   width: 386px;
   height: 444px;
+
   .content-card_container {
     position: relative;
+
     .content-card_image {
+      margin-left: 16px;
       width: 356px;
       height: 338px;
       object-fit: contain;
-      margin: 11px auto;
     }
-    .content-card_image_text {
+    .content-card_cart {
+      width: 52px;
+      height: 52px;
+      position: absolute;
+      top: 320px;
+      right: 31px;
+      display: none;
+    }
+    .content-card_infoArea {
+      margin: 24px 0 0 16px;
+    }
+    .content-card_outOfStock_text {
       top: 151px;
       left: 90px;
       position: absolute;
@@ -37,5 +53,30 @@
       text-align: center;
       color: #8d8f9a;
     }
+    .content-card_name {
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 29px;
+      text-align: left;
+      color: $black;
+    }
+    .content-card_price {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 29px;
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 29px;
+    }
+  }
+}
+.grayText {
+  color: #8d8f9a;
+}
+
+.content-card:hover {
+  box-shadow: 0px 4px 35px 0px #a8acb030;
+  .content-card_cart {
+    display: block;
   }
 }

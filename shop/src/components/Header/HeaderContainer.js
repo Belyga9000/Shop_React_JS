@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import {
@@ -25,13 +25,36 @@ export const HeaderContainer = () => {
     dispatch(selectCategory(productType));
   }, []);
 
+  const currenciesDropdown = useRef();
+
   const handleCategoryChange = (e) => {
     dispatch(selectCategory(e.target.text));
     dispatch(filterProducts());
   };
 
+  const [isOpen, setIsOpen] = useState(false);
+  const handleCurrencyDropdown = (e) => {
+    setIsOpen(!isOpen);
+  };
+
+  useEffect(() => {
+    const handler = (event) => {
+      if (!currenciesDropdown.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handler);
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  });
+
   return (
     <Header
+      currenciesDropdown={currenciesDropdown}
+      handleCurrencyDropdown={handleCurrencyDropdown}
+      isOpen={isOpen}
       handleCategoryChange={handleCategoryChange}
       productType={productType}
       currencies={currencies}

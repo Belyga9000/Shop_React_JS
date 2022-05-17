@@ -14,8 +14,6 @@ export const ContentContainer = () => {
   const productsIsFetched = useSelector(productsAreFetched);
   const dispatch = useDispatch();
 
-  console.log(products);
-
   useEffect(() => {
     dispatch(filterProducts());
   }, [productsIsFetched]);

@@ -1,4 +1,5 @@
 import { Component } from "react";
+import green_cart from "../../img/Green_cart.png";
 import "./Content.scss";
 
 export class Content extends Component {
@@ -8,44 +9,58 @@ export class Content extends Component {
         <h2 className="content-category">{this.props.category_name}</h2>
         <ul className="content-wrap">
           {this.props.products.length > 0 &&
-            this.props.products
-              .filter((product) => product.inStock === true)
-              .map((a) => (
-                <li key={a.name} className="content-card">
-                  <div className="content-card_container">
+            this.props.products.map((a) => (
+              <li key={a.name} className="content-card">
+                <div className="content-card_container">
+                  <img
+                    className={
+                      a.inStock
+                        ? "content-card_image"
+                        : "content-card_image outOfStock"
+                    }
+                    alt={a.name}
+                    src={a.gallery[0]}
+                  ></img>
+                  {a.inStock ? (
+                    ""
+                  ) : (
+                    <div className="content-card_outOfStock_text">
+                      out sf stock
+                    </div>
+                  )}
+                  {a.inStock ? (
                     <img
-                      className="content-card_image"
-                      alt={a.name}
-                      src={a.gallery[0]}
+                      src={green_cart}
+                      alt="add to cart"
+                      className="content-card_cart"
                     ></img>
-                    <p className="content-card_name">{a.name}</p>
-                    <span className="content-card_price">
+                  ) : (
+                    ""
+                  )}
+                  <div className="content-card_infoArea">
+                    <p
+                      className={
+                        a.inStock
+                          ? "content-card_name"
+                          : "content-card_name grayText"
+                      }
+                    >
+                      {a.name}
+                    </p>
+                    <span
+                      className={
+                        a.inStock
+                          ? "content-card_price"
+                          : "content-card_price grayText"
+                      }
+                    >
                       {a.prices[0].currency.symbol}
                       {a.prices[0].amount}
                     </span>
                   </div>
-                </li>
-              ))}
-          {this.props.products.length > 0 &&
-            this.props.products
-              .filter((product) => product.inStock === false)
-              .map((a) => (
-                <li key={a.name} className="content-card">
-                  <div className="content-card_container">
-                    <img
-                      className="content-card_image outOfStock"
-                      alt={a.name}
-                      src={a.gallery[0]}
-                    ></img>
-                    <div className="content-card_image_text">out sf stock</div>
-                    <p className="content-card_name">{a.name}</p>
-                    <span className="content-card_price">
-                      {a.prices[0].currency.symbol}
-                      {a.prices[0].amount}
-                    </span>
-                  </div>
-                </li>
-              ))}
+                </div>
+              </li>
+            ))}
         </ul>
       </div>
     );
