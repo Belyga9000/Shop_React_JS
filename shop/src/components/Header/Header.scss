@@ -36,15 +36,33 @@
   display: flex;
 
   .sideMenu-currencies_dropdown {
+    position: relative;
     text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 29px;
+    margin-right: 38px;
+    &::after {
+      content: "^";
+    }
+
+    .sideMenu-currencies_dropdown_wrap {
+      width: 169px;
+      position: absolute;
+      top: 35px;
+      left: -35px;
+    }
 
     .sideMenu-currencies_dropdown_option {
-      font-family: Raleway;
+      width: 114px;
+      height: 45px;
       font-size: 18px;
       font-weight: 500;
       line-height: 29px;
-      letter-spacing: 0em;
-      text-align: center;
+
+      &:hover {
+        background-color: #eeeeee;
+      }
     }
   }
 }

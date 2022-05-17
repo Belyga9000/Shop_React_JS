@@ -28,20 +28,31 @@ export default class Header extends Component {
           </ul>
           <img src={logo} alt="logo icon"></img>
           <div className="sideMenu">
-            <select className="sideMenu-currencies_dropdown" name="currencies">
-              <option className="sideMenu-currencies_dropdown_option" hidden>
-                {this.props.currentCurrency.symbol}
-              </option>
-              {this.props.currencies?.map((currency) => (
-                <option
-                  className="sideMenu-currencies_dropdown_option"
-                  key={currency.label}
-                  name={currency.label}
-                >
-                  {currency.symbol} {currency.label}
-                </option>
-              ))}
-            </select>
+            <div
+              className="sideMenu-currencies_dropdown"
+              name="currencies"
+              ref={this.props.currenciesDropdown}
+              onClick={this.props.handleCurrencyDropdown}
+            >
+              {this.props.currentCurrency.symbol}
+              <div
+                className={
+                  this.props.isOpen
+                    ? "sideMenu-currencies_dropdown_wrap"
+                    : "visually-hidden"
+                }
+              >
+                {this.props.currencies?.map((currency) => (
+                  <p
+                    className="sideMenu-currencies_dropdown_option"
+                    key={currency.label}
+                    name={currency.label}
+                  >
+                    {currency.symbol} {currency.label}
+                  </p>
+                ))}
+              </div>
+            </div>
             <img
               src={cart}
               alt="cart icon"
